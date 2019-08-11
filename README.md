@@ -7,12 +7,8 @@ Things to do before running this projects:
   DOWNLOADING AND SETTING up MySQL
   ( You can skip this step if you already have MySQL set up on your computer.)
       STEP 1: First, we will download and set up MySQL using . Make sure to save the    
-              temporary 
-              root password they give you! Once MySQL is installed, we will set up a  
-              launch 
-              daemon that allows MySQL to start up on system/terminal launch.
-              After you finish installing, double check that your server is running. If               not, you 
-              can turn it on through that service.msc from run.
+              temporary root password they give you! Once MySQL is installed, we will set up a launch daemon that allows MySQL to start up on system/terminal launch.
+              After you finish installing, double check that your server is running. If not, you  can turn it on through that service.msc from run.
       
       Try running mysql in terminal. You might get an error like “command not found”. If       so, in terminal, configure your computer’s $PATH so it recognizes mysql as an     
       exectutable:
