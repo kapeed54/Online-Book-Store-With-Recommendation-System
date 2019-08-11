@@ -84,9 +84,9 @@ WSGI_APPLICATION = 'bookstore.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test',
-        'USER': 'root',
-        'PASSWORD': 'kapeed123',
+        'NAME': 'your_database_name',
+        'USER': 'your_mysql_user',
+        'PASSWORD': 'your_mysql_password',
         'HOST': '',
         'PORT': '',
 
@@ -137,15 +137,3 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'products/')
 
 CART_SESSION_ID= 'cart'
-
-REDIS_HOST = 'localhost' 
-REDIS_PORT = 6379 
-REDIS_DB = 0
-
-PRODUCTS_PER_PAGE = 12
-
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'example@gmail.com'
-EMAIL_HOST_PASSWORD = 'password'
-EMAIL_PORT = 587
