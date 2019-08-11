@@ -1,0 +1,42 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %} Recommendations {% endblock %}
+{% block content %}
+
+<div class="shadow p-3 mb-5 bg-light rounded">
+    <h4 align="center" style="color: red">RECOMMENDATIONS FOR YOU</h4>
+</div>
+
+<div style="margin-top: 2%;margin-left: 6%">
+  <div class="row">
+    {% if product_list %}
+      {% for product in product_list %}
+        <div class="card text-black border-light mb-5" style="max-width: 18rem;margin-right: 2%">
+            <div class="card-body">
+                <a href="{{ product.get_absolute_url }}">
+                  <img src="{% if product.image %} {{ product.image.url }} {% else %}{% static 'img/no_image.png' %} {% endif %}" alt="..." style="height: 200px; width: 200px">
+                </a>
+                <hr>
+                <h5 class="text-left">{{ product.name }}</h5>
+                <h6 class="text-left" style="color: red">{{ product.category }}</h6>
+                <p class="card-text">Rs. {{ product.price }}</p>
+                {% if product.stock > 0 %}
+                  <p class="card-text" style="color: green">In Stock</p>
+                {% else %}
+                  <p class="card-text" style="color: green">Out of Stock</p>
+                {% endif %}
+                <p><a href="{{ product.get_absolute_url }}" class="btn btn-dark btn-sm">View</a></p> 
+                
+                  
+            </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+  </div>
+</div>    
+
+
+  
+
+{% endblock %}

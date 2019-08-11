@@ -1,0 +1,38 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+  Edit Profile
+{% endblock %}
+
+{% block content %}
+
+<div class="container " style="margin-top: 3%">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2>Edit Profile</h2>
+            <hr>
+            <form method="POST" action="{% url 'edit_profile' %}">
+                {% csrf_token %}
+                {% if form.errors %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <p>ERROR Registering...</p>
+                        {% for field in form %}
+                            {% if field.errors %}
+                                {{ field.errors}}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {{ form.as_p }}
+                <input type="submit" value="Save" class="btn btn-info">
+                </br>
+                <hr>
+                <small>Click <a href="{% url 'change_password' %}">Here</a> to change your password.</small>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

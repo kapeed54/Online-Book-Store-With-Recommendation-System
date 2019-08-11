@@ -1,0 +1,59 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+    About Us
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid" style="margin-top: 2%">
+
+      <!-- Introduction Row -->
+      <h1>
+        <small style="color: teal ; margin-left: 1%">About US</small>
+      </h1>
+      <hr>
+      <div class="col-8">
+      <p align="justify">Founded in February of 2019 and based in Chyasal Lalitpur BookBuzz is a newly established online book store for people to buy book online.</p>
+      <p align="justify">Whether a romantic book or a book about a famous person we provide you all.
+      This online book store is a newly extented features of out physically located bookstore to extend our service for more people.
+       We provide books related to various genre and also recommend books based on ratings to the customer.
+      For everyone, who love books and reading, our website provides a great way to find new books, to discover authors who otherwise we would never know about. Being able to buy books online is amazing, you can find that book you had been searching for so long and purchase it only with a single click in our site.</p>
+      <P>Feel free to browse the wide collection of books we provide to you.</P>
+      </div>
+
+      <hr>
+      <!-- Team Members Row -->
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="my-4">
+            <small style="color: teal; margin-left: 1%"> Our Team</small>
+          </h1>
+
+        </div>
+        
+        <div class="col-lg-4 col-sm-6 text-center mb-4">
+          <img class="rounded-circle img-fluid d-block mx-auto" src=" {% static '' %}"alt="">
+          <h3>Deepak Aryal</h3>
+
+        </div>
+        <div class="col-lg-4 col-sm-6 text-center mb-4">
+          <img class="rounded-circle img-fluid d-block mx-auto" src="{% static '' %}" alt="">
+          <h3>Madan Bhandari</h3>
+        </div>
+        <div class="col-lg-4 col-sm-6 text-center mb-4">
+          <img class="rounded-circle img-fluid d-block mx-auto" src="{% static '' %}" alt="">
+          <h3>Rabi Shrestha</h3>
+        </div>
+        
+        <div class="col-lg-4 col-sm-6 text-center mb-4">
+          <img class="rounded-circle img-fluid d-block mx-auto" src="{% static '' %}" alt="">
+          <h3>Pramod Maharjan</h3>
+         
+        </div>
+      </div>
+    </div>
+
+        
+        
+
+{% endblock %}

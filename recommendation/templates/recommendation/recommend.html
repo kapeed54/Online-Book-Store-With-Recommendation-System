@@ -1,0 +1,32 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %} Recommendations {% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+    <h2>Recommendations for You </h2>
+</div>
+    <div class="container-fluid">
+   
+    <div class="row">
+            {% if product_list %}
+            {% for product in product_list %}
+                <div class="col-sm-2 col-md-2 ">
+                    <div class="thumbnail">
+                        <h4>{{product.name}}</h4>
+                        <a href="{% url 'shop:product_detail' id %}">
+                            <img src="{{ product.image.url }}" class="img-responsive">
+                        </a>
+                        <h5>{{product.category}}</h5>
+                        <div class="caption">
+                            <a href="{% url 'shop:product_detail' id %}" class="btn btn-primary btn-sm" role="button">Give Rating</a>    
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+        </div>
+    
+</div>
+
+{% endblock %}

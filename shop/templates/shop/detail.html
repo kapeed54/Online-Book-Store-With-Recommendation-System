@@ -1,0 +1,102 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+    {% if category %}{{ category.name }} {% else %} Products {% endif %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="single_product" style="margin: 5%">
+    <div class="container-fluid">
+      <div class="row" style="margin-top: 2%">
+        <div class="col">
+            <div class="image_selected"><img src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'img/default.jpg' %} {% endif %}" alt="..." style="height: 500px; width: 500px">
+          </div>
+        </div>
+
+        <div class="col">
+          <h4><small>Have you read this book?</small></h4>
+          <h5><small>Give your ratings</small></h5>
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-info alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+            {% endfor %}
+          {% endif %}
+          <form class="form-horizontal" role="search" method="post" action="" onsubmit="return validateForm()"  name="ratingForm">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="row">
+                  <div class="col-lg-12">
+                      <div class="star-rating">
+                        <span class="fa fa-star-o" data-rating="1"></span>
+                        <span class="fa fa-star-o" data-rating="2"></span>
+                        <span class="fa fa-star-o" data-rating="3"></span>
+                        <span class="fa fa-star-o" data-rating="4"></span>
+                        <span class="fa fa-star-o" data-rating="5"></span>
+                        <input type="hidden" name="rating" class="rating-value" value="0" >
+                        {% csrf_token %}
+                    </div>
+                  </div>
+                </div>
+                <input type="submit" class="btn btn-info btn-sm" value="Rate" style="margin-left: 2%">
+              </div>
+            </div>
+        </form>
+        <br>
+          <div class="product_description">
+            <div class="product_category">
+                <h4 style="margin-left: 40% ">Category</h4>
+                <hr>
+                <a class="btn btn-danger btn-lg btn-block" href="{{ product.category.get_absolute_url }}" role="button">{{ product.category }}</a>
+            </div>
+            <hr>
+                
+            <div class="product_name">
+              <h3>{{ product.name }}</h3>  
+            </div>
+                    
+            <div class="product_text">
+              <p align="justify">{{ product.description|safe|linebreaksbr }}</p>
+            </div>
+            
+
+            <div class="product_author">
+              <p class="text-muted">Author: {{ product.author }}</p>
+            </div>
+
+            <div class="product_publisher">
+              <p class="text-muted">Publisher: {{ product.publisher }}</p>
+            </div>
+
+            <div class="product_isbn_no">
+              <p class="text-muted">ISBN: {{ product.isbn_no }}</p>
+            </div>
+
+            <div class="product_price">
+              <p class="text-muted">Rs. {{ product.price }}</p>
+            </div>
+             {% if product.stock > 0 %}
+                <div class="order_info d-flex flex-row">
+                  <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                    {% csrf_token %}
+                    {{ cart_product_form }}
+                    <input type="submit" value="Add to cart" class="btn btn-success btn-sm">
+                  </form>
+                </div>
+             {% else %}
+                <p class="card-text" style="color: red">This Product is Out of Stock</p>
+             {% endif %} 
+             <br>
+             <hr>
+          </div>      
+         </div>
+        </div>
+      </div>
+    </div>
+    
+{% endblock %}

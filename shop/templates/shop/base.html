@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="en">
+<head>
+    
+    
+    <link rel="icon" href="{% static 'img/icon.png' %}">
+    <title>{% block title %} BookBuzz - Online Bookstore| Home{% endblock %} </title>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' >
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    
+    <style type="text/css">
+        .thumbnail p, .thumbnail h4 {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            }
+        .star-rating {
+            line-height:32px;
+            font-size:1.25em;
+            }
+
+.star-rating .fa-star{color: gold;}
+        
+    </style>
+    
+
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.facebook.com/avhiaryal54" target="_blank"><i class="fab fa-facebook-f "></i></a>
+                </li>
+      
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fab fa-instagram"></i></a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fab fa-twitter"></i></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href=" http://www.youtube.com/c/AVHIARYAL" target="_blank"><i class="fab fa-youtube"></i></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tooltip" data-placement="top" title="Call Us" href="tel:+9779840349182"><i class="fas fa-phone"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tooltip" data-placement="top" title="Mail Us" href="mailto:avhiaryal54@gmail.com"><i class="far fa-envelope"></i></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav md-auto">
+                <h3 style="color: skyblue"><marquee behavior="scroll" direction="left" width="600">Informing. Educating. Inspiring. For the discerning reader.</marquee></h3>
+
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}"><i class="fas fa-user"></i> {{user.username}}</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+          
+                    
+
+                    <li class="nav-item">
+                        {% with total_items=cart|length %}
+                            {% if cart|length > 0 %}
+                                 <a class="nav-link" href="{% url 'cart:cart_detail' %}" style="color: red"><i class="fas fa-shopping-cart"></i>{{ total_items }}</a>
+                            {% else %}
+                                <a class="nav-link" href="{% url 'cart:cart_detail' %}" style="color: red"><i class="fas fa-shopping-cart"></i>0</a>
+                                    
+                            {% endif %}
+                          {% endwith %}
+                        </li>
+                
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
+                    </li>
+
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+   <!--  <div class="container-fluid"> -->
+        <div class="row" style="margin-top:-3% ">
+            <div class="col-1">
+                <a class="navbar-brand" href="{% url 'shop:product_list' %}"><img src=" {% static 'img/booklogo.png' %}" height="120" width="110"></a>
+            </div>
+        <div class="col-11" style="margin-top:2.6%">
+            <nav class="navbar navbar-expand-lg navbar-light bg-info rounded">  
+                
+                
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'shop:product_list' %}"><i class="fas fa-home" style="color: white"></i></a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'about:about_detail' %}" style="color: white" >About Us</a></li>
+                <li  class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="avbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white" >Books</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ol class="list-unstyled">
+                      <li {% if not category %} class="active"{% endif %}><a class="dropdown-item" style="color:red" href="{% url 'shop:product_list' %}">All Products</a></li>
+                        {% for c in categories %}
+                          <li {% if category.slug == slug %} class="active"{% endif %}><a  class="dropdown-item" href="{{ c.get_absolute_url }}" style="color: red">{{ c.name }}</a></li>
+                        {% endfor %}
+                    </ol>
+                  </div>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'contact:contact_detail' %}" style="color: white" >Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://avhiaryal54.wordpress.com/" target="_blank" style="color: white" >Blog</a></li>
+                
+                {% if user.is_authenticated %}
+                    <li  class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="avbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white" >My Account</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <ol class="list-unstyled">
+                                <li><a class="nav-link" href="{% url 'profile' %}" style="color:red">Profile</a></li>
+                                <li> <a class="nav-link" href="{% url 'cart:cart_detail' %}" style="color: red">Cart:
+                                    {% with total_items=cart|length %}
+                                        {% if cart|length > 0 %}
+                                            {{ total_items }} item{{ total_items|pluralize }}, Rs.{{ cart.get_total_price }}
+                                        {% else %}
+                                            0 items
+                                        {% endif %}
+                                    {% endwith %}</a>
+                                </li>
+                                <li><a href="{% url 'orders:order_create' %}" class="nav-link" style="color:red"> Checkout</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" style="color:red">Logout</a></li>
+
+
+
+                            </ol>
+                        </div>
+                    </li>
+                {% endif %}
+
+              </ul>
+            </div>
+                <ul class="navbar-nav ml-auto">
+                  <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name='search' value="{{search_term}}" size="50px">
+                    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+                </ul>
+    </nav>
+</div>
+</div>
+</div>
+
+
+<div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    
+</nav>
+</div>
+
+           
+<div class="container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+
+{% block content %}
+
+{% endblock %}
+<hr>
+<div class="copyright">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <div class="copyright_content">
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | BookBuzz
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="{%static 'js/jquery.min.js'%}"></script>
+<script type="text/javascript" src="{%static 'js/bootstrap.min.js'%}"></script>
+<script type="text/javascript">
+    var $star_rating = $('.star-rating .fa');
+    var SetRatingStar = function()
+    {
+        return $star_rating.each(function()
+        {
+            if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating')))
+            {
+                return $(this).removeClass('fa-star-o').addClass('fa-star');
+            }
+            else
+            {
+                return $(this).removeClass('fa-star').addClass('fa-star-o');
+            }
+        });
+    };
+
+    $star_rating.on('click', function()
+    {
+        $star_rating.siblings('input.rating-value').val($(this).data('rating'));
+        return SetRatingStar();
+    });
+
+    SetRatingStar();
+    $(document).ready(function(){
+    });
+        
+</script>
+
+<script type="text/javascript">
+    function validateForm()
+    {
+        var x = document.forms["ratingForm"]["rating"].value;
+        if(x=="0")
+        {
+            alert("Please Give Correct Rating");
+            return false;
+        }
+    }
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+</body>
+</html>
