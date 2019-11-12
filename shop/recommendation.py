@@ -9,11 +9,9 @@ def Myrecommend():
 	   	# The mean is only counting books that were rated
 		# np.seterr(divide='ignore', invalid='ignore')
 		Ymean = np.sum(myY,axis=1)/np.sum(myR,axis=1)
-		print(Ymean)
 		Ymean = Ymean.reshape((Ymean.shape[0],1))
 		return myY-Ymean, Ymean
-		
-	
+			
 	def flattenParams(myX, myTheta):
 		return np.concatenate((myX.flatten(),myTheta.flatten()))
 
@@ -47,7 +45,6 @@ def Myrecommend():
 		return flattenParams(Xgrad, Thetagrad)
 
 	df=pd.DataFrame(list(Myrating.objects.all().values()))
-	print(df)
 	mynu=df.user_id.unique().shape[0]
 	mynm=df.id.unique().shape[0]
 	mynf=8
@@ -66,17 +63,11 @@ def Myrecommend():
 
 
 	Ynorm, Ymean = normalizeRatings(Y,R)
-
 	X = np.random.rand(mynm,mynf)
-	
 	Theta = np.random.rand(mynu,mynf)
-	
 	myflat = flattenParams(X, Theta)
-	
 	mylambda = 12.2
-	
 	result = scipy.optimize.fmin_cg(cofiCostFunc,x0=myflat,fprime=cofiGrad,args=(Y,R,mynu,mynm,mynf,mylambda),maxiter=40,disp=True,full_output=True)
-	
 	resX, resTheta = reshapeParams(result[0], mynm, mynu, mynf)
 	prediction_matrix = resX.dot(resTheta.T)
 	return prediction_matrix,Ymean
