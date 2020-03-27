@@ -1,4 +1,4 @@
-Step 1: Downloading and Setting Up MySQL
+﻿Step 1: Downloading and Setting Up MySQL
 You can skip this step if you already have MySQL set up on your computer.
 First, we will download and set up MySQL using . Make sure to save the temporary root password they give you! Once MySQL is installed, we will set up a launch daemon that allows MySQL to start up on system/terminal launch.
 After you finish installing, double check that your server is running. If not, you can turn it on through that service.msc from run.
