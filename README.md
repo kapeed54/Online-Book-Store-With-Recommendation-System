@@ -6,7 +6,7 @@ To run this project:
 open command line and enter:
 python manage.py runserver
 
-##( Dont Forget to Read the documentation provided)
+#( Dont Forget to Read the documentation provided)
 
 Online shopping is the process whereby consumers directly buy goods or services from 
 a seller in real-time, without an intermediary service, over the Internet. The process is 
