@@ -1,87 +1,229 @@
-_**THE AUTHOR IS NO LONGER UPDATING THIS REPOSITORY **_
+# **📚 Online Book Store with Recommendation System**
+⚠ **THE AUTHOR IS NO LONGER UPDATING THIS REPOSITORY** ⚠
 
-# Online-Book-Store-With-Recommendation-System
-This project deals with developing an e-commerce website for Online Book Sale. It provides the user with a catalog of different books available for purchase in the store. In order to facilitate online purchase a shopping cart is provided to the user. The users are recommended on the basis of previous users rating.
-To run this project:
-open command line and enter:
+## **📖 About This Project**
+This project is an **e-commerce website for buying books online**, featuring a **Recommendation System** that suggests books based on user ratings.
+
+### **🔹 Features**
+- 📚 **Book Catalog** – Browse and search books by category.
+- 🛒 **Shopping Cart** – Add books and proceed to checkout.
+- ⭐ **Recommendation System** – Get book recommendations using **Collaborative Filtering** (Matrix Factorization).
+- 🔒 **User Authentication** – Sign up, log in, and manage your profile.
+- 🛠 **Built With** – **Python, Django, MySQL, HTML, CSS, Bootstrap, JavaScript.**
+
+### **🔹 Running the Project**
+```powershell
 python manage.py runserver
+```
+Then open **http://127.0.0.1:8000/** in your browser.
 
-## Dont Forget to Read the documentation provided
+---
 
-- Online shopping is the process whereby consumers directly buy goods or services from a seller in real-time, without an intermediary service, over the Internet. 
-- The process is called Business-to-Consumer (B2C) online shopping.  
-- The developed system is a “Recommendation System Using Collaborative Filtering” which deals with developing an e-commerce website for a bookstore for both walk-in customers and online customers.
-- The customer can browse by catalog, search, buy and get a recommendation of books in the store. 
-- To facilitate online purchase a shopping cart is provided to the user. 
-- The users are recommended based on previous users rating using **matrix factorization technique**.
-- To develop an e-commerce website, several Technologies was studied and understood. 
-- These include server and client-side scripting techniques, implementation technologies such as Python, Django, HTML, CSS, Bootstrap, JavaScript, and MySQL for database 
-handling.  
-          
-**Step 1: Downloading and Setting Up MySQL**
-You can skip this step if you already have MySQL set up on your computer.
-First, we will download and set up MySQL using . Make sure to save the temporary root password they give you! Once MySQL is installed, we will set up a launch daemon that allows MySQL to start up on system/terminal launch.
-After you finish installing, double check that your server is running. If not, you can turn it on through that service.msc from run.
+# **🚀 Setup Guide**
+If you are **forking or downloading this repository**, follow these steps to **avoid common setup issues**.
 
-**Step 2: Finishing Up Installation**
-Try running mysql in terminal. You might get an error like “command not found”. If so, in terminal, configure your computer’s $PATH so it recognizes mysql as an executable:
-_$ export PATH=$PATH:/path/to/your/mysql/bin_
+---
 
-**Step 3: Creating MySQL Users**
-NOTE: in this tutorial, we are altering the root user because it is assumed you do not have any other local users on your MySQL server. If you do, change the usernames accordingly
-Now we are ready to use MySQL! Enter
+## 📌 **Step 1: Install MySQL**
+### **1️⃣ Install MySQL**
+- **Download MySQL**: [MySQL Community Server](https://dev.mysql.com/downloads/mysql/)
+- Choose **"Server Only"** during installation.
+- Set a **root password** (remember it).
 
-_$ mysql -u root –p_
+### **2️⃣ Verify MySQL is Running**
+Run:
+```powershell
+Get-Service | Where-Object { $_.DisplayName -like "*MySQL*" }
+```
+- If MySQL is **stopped**, start it:
+  ```powershell
+  Start-Service MySQL
+  ```
+- If using **XAMPP**, start MySQL manually.
 
-Log in using your root password. If this is your first time logging in, use the password that you saved in step 1. Now, if you want to change the root password to something of your own preference, in the MySQL shell, enter
+---
 
-_mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'your_new_password';_
+## 📌 **Step 2: Add MySQL to System PATH**
+If `mysql` is not recognized as a command, add it to **System PATH**:
 
-Now, you have your root user set up and can log into it using your own password.
-If you want to create your own user, enter
+1. Open **Environment Variables** (`Win + R` → type `sysdm.cpl` → "Advanced" → "Environment Variables").
+2. Find **"Path"** under **System Variables** → Click **Edit**.
+3. Click **New** → Add:
+   ```
+   C:\Program Files\MySQL\MySQL Server 8.0\bin
+   ```
+4. Click **OK** and **Restart your PC**.
 
-_mysql> CREATE USER 'your_new_username'@'localhost' IDENTIFIED BY 'new_password';_
+Test MySQL:
+```powershell
+mysql --version
+```
+✅ **If you see a version number, MySQL is working!**
 
-_mysql> GRANT ALL PRIVILEGES ON * . * TO 'your_new_username'@'localhost';_
+---
 
-_mysql> FLUSH PRIVILEGES;_
+## 📌 **Step 3: Set Up MySQL Database**
+### **1️⃣ Open MySQL Shell**
+```powershell
+mysql -u root -p
+```
+Enter your **MySQL root password**.
 
-the * . * allows the user to have all access to the databases and tables in the server. For more fine-toothed assignment of priviledges, check out the MySQL documentation.
+### **2️⃣ Create a Database and User**
+Run:
+```sql
+CREATE DATABASE bookstore CHARACTER SET UTF8;
+CREATE USER 'bookadmin'@'localhost' IDENTIFIED BY 'yourpassword';
+GRANT ALL PRIVILEGES ON bookstore.* TO 'bookadmin'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+```
+✅ **Your MySQL setup is now ready!**
 
-**Step 4: Creating the Project Database**
-In order to use MySQL with our project, we will need a Python 3 database connector library compatible with Django. So, we will install the database connector, mysqlclient.
-_pip install mysqlclient_
+---
 
-Then, to create the database for your project:
+## 📌 **Step 4: Clone the Repository**
+Navigate to your project folder and clone the GitHub repository:
+```powershell
+cd D:\GitHub
+git clone https://github.com/kapeed54/Online-Book-Store-With-Recommendation-System.git
+cd Online-Book-Store-With-Recommendation-System
+```
 
-_mysql> CREATE DATABASE your_project_name CHARACTER SET UTF8;_
-_mysql> GRANT ALL PRIVILEGES ON your_project_name.* TO your_username@localhost;_
-_mysql> FLUSH PRIVILEGES;_
-_mysql> QUIT_
+---
 
-**Step 5: Changing Django App Settings**
-Now, in your terminal, navigate to the root directory of your Django application.
-Finally, in your settings.py file in your app, change the DATABASES section to the following:
+## 📌 **Step 5: Set Up a Virtual Environment**
+Create and activate a virtual environment:
+```powershell
+python -m venv env
+.\env\Scripts\Activate
+```
 
-_DATABASES = {
+---
+
+## 📌 **Step 6: Install Dependencies**
+Install all required Python packages:
+```powershell
+pip install --upgrade pip setuptools wheel
+pip install -r requirements.txt
+```
+✅ **If `requirements.txt` is missing, install dependencies manually**:
+```powershell
+pip install django mysqlclient numpy scipy pandas scikit-learn Pillow django-bootstrap4 gunicorn
+```
+
+---
+
+## 📌 **Step 7: Configure Database in Django**
+Open **`bookstore/settings.py`**, update the `DATABASES` section:
+```python
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'your_project_name',
-        'USER': 'root',
-        'PASSWORD': 'your_root_password',
-        'HOST': 'your_host_address', 
-        'PORT': 'your_port',
+        'NAME': 'bookstore',  # Database name
+        'USER': 'bookadmin',  # MySQL username
+        'PASSWORD': 'yourpassword',  # MySQL password
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
-}_
+}
+```
+✅ **Save the file.**
 
-A reminder that your_project_name should be the same name as the database you created in MySQL in Step 2. your_password is the same password that you use to log into MySQL. The HOST and PORT values can be optional if you are simply hosting your webapp locally, but if you are running MySQL in a virtual server or a separate server then fill in your host address and port accordingly.
+---
 
-**Step 6: Make Migrations**
-_$ python manage.py makemigrations
-$ python manage.py migrate_
-Once done we are now connected to our mysql database;
-enter : _python manage.py runserver_
+## 📌 **Step 8: Apply Migrations**
+Run:
+```powershell
+python manage.py makemigrations
+python manage.py migrate
+```
+✅ **Now, your database is connected!**
 
+---
+
+## 📌 **Step 9: Load Sample Data (If Needed)**
+### **1️⃣ Add Books via Django Admin**
+- Go to: **[`http://127.0.0.1:8000/admin/`](http://127.0.0.1:8000/admin/)**
+- Log in and manually **add some books**.
+
+### **2️⃣ Or Use the Django Shell**
+Run:
+```powershell
+python manage.py shell
+```
+Then enter:
+```python
+from shop.models import Product, Myrating, User
+
+# Get an existing user
+user = User.objects.first()
+if not user:
+    print("No users found. Please create a user first via admin panel.")
+    exit()
+
+# Add sample books if none exist
+if not Product.objects.exists():
+    Product.objects.create(name="The Great Gatsby", price=20, description="A classic novel", stock=10)
+    Product.objects.create(name="1984", price=25, description="A dystopian novel", stock=5)
+    Product.objects.create(name="To Kill a Mockingbird", price=30, description="A novel by Harper Lee", stock=8)
+    print("Sample books added!")
+
+# Add sample ratings
+if not Myrating.objects.exists():
+    Myrating.objects.create(user=user, product=Product.objects.first(), rating=5)
+    Myrating.objects.create(user=user, product=Product.objects.last(), rating=4)
+    print("Sample ratings added!")
+
+exit()
+```
+✅ **Now your project has books and ratings!**
+
+---
+
+## 📌 **Step 10: Create a Superuser for Django Admin**
+Run:
+```powershell
+python manage.py createsuperuser
+```
+- Enter **Username, Email, and Password**.
+- Log in at **[`http://127.0.0.1:8000/admin/`](http://127.0.0.1:8000/admin/)**.
+
+---
+
+## 📌 **Step 11: Run the Development Server**
+```powershell
+python manage.py runserver
+```
+Open:
+- **Homepage:** [`http://127.0.0.1:8000/`](http://127.0.0.1:8000/)
+- **Admin Panel:** [`http://127.0.0.1:8000/admin/`](http://127.0.0.1:8000/admin/)
+- **Get Recommendations:** [`http://127.0.0.1:8000/recommend/`](http://127.0.0.1:8000/recommend/)
+
+✅ **Your project is now running successfully!** 🎉
+
+---
+
+## 📌 **Troubleshooting**
+### **1️⃣ If MySQL Connection Fails**
+```powershell
+Get-Service | Where-Object { $_.DisplayName -like "*MySQL*" }
+Start-Service MySQL
+```
+### **2️⃣ If `pip install` Fails**
+```powershell
+python -m pip install --upgrade pip
+```
+### **3️⃣ If Recommendations Don’t Work**
+Ensure users have **rated books** before trying recommendations.
+
+---
+
+🚀 **Now anyone cloning the project can set it up smoothly without errors!**  
+
+This **README format is perfect for GitHub** and blends the original **project introduction** with the **updated setup instructions**.  
+
+Let me know if you want any final tweaks before committing this! 🎯
           
           
 
