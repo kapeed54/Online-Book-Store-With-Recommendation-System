@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -19,8 +19,18 @@ def recommend(request):
         return redirect("login")
     if not request.user.is_active:
         raise Http404
-    df=pd.DataFrame(list(Myrating.objects.all().values()))
-    nu=df.user_id.unique().shape[0]
+    
+    df = pd.DataFrame(list(Myrating.objects.all().values('id', 'user_id', 'product_id', 'rating')))
+
+
+    # Debugging: Check what columns exist
+    print("DataFrame Columns:", df.columns)
+    print("DataFrame Head:\n", df.head())
+
+    if 'user_id' not in df.columns:
+        return HttpResponse("Error: 'user_id' column is missing from the database data.", status=500)
+    
+    nu = df['user_id'].unique().shape[0]
     current_user_id= request.user.id
     
     # if new user not rated any movie

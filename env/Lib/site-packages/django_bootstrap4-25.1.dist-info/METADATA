@@ -1,0 +1,153 @@
+Metadata-Version: 2.4
+Name: django-bootstrap4
+Version: 25.1
+Summary: Bootstrap 4 for Django
+Project-URL: Changelog, https://github.com/zostera/django-bootstrap4/blob/main/CHANGELOG.md
+Project-URL: Documentation, https://django-bootstrap4.readthedocs.io/
+Project-URL: Homepage, https://github.com/zostera/django-bootstrap4
+Project-URL: Issues, https://github.com/zostera/django-bootstrap4/issues
+Project-URL: Source, https://github.com/zostera/django-bootstrap4
+Author-email: Dylan Verheul <dylan@dyve.net>
+License: BSD 3-Clause License
+        
+        Copyright (c) Zostera B.V. and individual contributors
+        All rights reserved.
+        
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are met:
+        
+        * Redistributions of source code must retain the above copyright notice, this
+          list of conditions and the following disclaimer.
+        
+        * Redistributions in binary form must reproduce the above copyright notice,
+          this list of conditions and the following disclaimer in the documentation
+          and/or other materials provided with the distribution.
+        
+        * Neither the name of the copyright holder nor the names of its
+          contributors may be used to endorse or promote products derived from
+          this software without specific prior written permission.
+        
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+        AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+        IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+        DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+        FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+        DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+        SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+        CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+        OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+        OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+License-File: AUTHORS
+License-File: LICENSE
+Keywords: bootstrap,bootstrap4,django
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 4.2
+Classifier: Framework :: Django :: 5.0
+Classifier: Framework :: Django :: 5.1
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Utilities
+Requires-Python: >=3.9
+Requires-Dist: beautifulsoup4>=4.10.0
+Requires-Dist: django>=4.2
+Description-Content-Type: text/markdown
+
+# django-bootstrap 4
+
+[![Tests](https://github.com/zostera/django-bootstrap4/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/zostera/django-bootstrap4/actions?query=workflow%3Atest+branch%3Amain)
+[![Coverage Status](https://coveralls.io/repos/github/zostera/django-bootstrap4/badge.svg?branch=main)](https://coveralls.io/github/zostera/django-bootstrap4?branch=main)
+[![Latest PyPI version](https://img.shields.io/pypi/v/django-bootstrap4.svg)](https://pypi.python.org/pypi/django-bootstrap4)
+
+Bootstrap 4 for Django.
+
+## Goal
+
+The goal of this project is to seamlessly blend Django and Bootstrap 4.
+
+## Roadmap
+
+Bootstrap 4 has been superseded by Bootstrap 5. As a result, this package is now in maintenance mode and will only receive bug fixes and security updates. No new features or enhancements will be added. We recommend that new projects use Bootstrap 5 and encourage existing projects to consider migrating when feasible.
+
+For Bootstrap 5, please refer to our dedicated package: [django-bootstrap5](https://github.com/zostera/django-bootstrap5).
+
+## Requirements
+
+This package requires a combination of Python and Django that is currently supported.
+
+See "Supported Versions" on https://www.djangoproject.com/download/.
+
+## Documentation
+
+The full documentation is at https://django-bootstrap4.readthedocs.io/
+
+## Installation
+
+1. Install using pip:
+
+```bash
+pip install django-bootstrap4
+```
+
+   Alternatively, you can install download or clone this repo and call ``pip install -e .``.
+
+2. Add to `INSTALLED_APPS` in your `settings.py`:
+
+```python
+INSTALLED_APPS = (
+  # ...
+  "bootstrap4",
+  # ...
+)
+```
+
+3. In your templates, load the `bootstrap4` library and use the `bootstrap_*` tags. See example below.
+
+## Example template
+
+```jinja
+{% load bootstrap4 %}
+
+{# Display a form #}
+
+<form action="/url/to/submit/" method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    {% endbuttons %}
+</form>
+```
+
+## Example
+
+An example application app is provided in `example`. You can run it with `make example`.
+
+## Bugs and suggestions
+
+If you have found a bug or if you have a request for additional functionality, please use the issue tracker on GitHub.
+
+https://github.com/zostera/django-bootstrap4/issues
+
+## License
+
+You can use this under BSD-3-Clause. See [LICENSE](LICENSE) file for details.
+
+## Author
+
+Developed and maintained by [Zostera](https://zostera.nl).
+
+Original author: [Dylan Verheul](https://github.com/dyve).
+
+Thanks to everybody that has contributed pull requests, ideas, issues, comments and kind words.
+
+Please see [AUTHORS](AUTHORS) for a list of contributors.

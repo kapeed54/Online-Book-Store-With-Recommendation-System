@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,10 @@ SECRET_KEY = '#_&=00i)tksdb#v5+5_bo=e8--m@1awp(k=q%1lv+fepvve%z)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+if 'runserver' in sys.argv:
+    DEBUG_PROPAGATE_EXCEPTIONS = True
 
 
 # Application definition
@@ -85,10 +89,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'bookstore',
-        'USER': 'root',
-        'PASSWORD': 'kapeed123',
-        'HOST': '',
-        'PORT': '',
+        'USER': 'bookadmin',
+        'PASSWORD': 'kapeed911',
+        'HOST': 'localhost',
+        'PORT': '3306',
 
     }
 }
@@ -149,3 +153,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'example@gmail.com'
 EMAIL_HOST_PASSWORD = 'password'
 EMAIL_PORT = 587
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

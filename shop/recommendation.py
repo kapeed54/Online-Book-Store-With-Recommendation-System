@@ -44,22 +44,24 @@ def Myrecommend():
 		Thetagrad += mylambda * myTheta
 		return flattenParams(Xgrad, Thetagrad)
 
-	df=pd.DataFrame(list(Myrating.objects.all().values()))
-	mynu=df.user_id.unique().shape[0]
-	mynm=df.id.unique().shape[0]
+	df = pd.DataFrame(list(Myrating.objects.all().values('id', 'user_id', 'product_id', 'rating')))
+	if df.empty:
+		return np.array([]), np.array([])  # Return empty arrays if no ratings exist
+
+	mynu = df['user_id'].nunique()
+
+	mynm = df['product_id'].nunique()
+	
 	mynf=8
 	
 	Y=np.zeros((mynm,mynu))	
 	
 	for row in df.itertuples():
-		Y[row[2]-1, row[4]-1] = row[3]
+		Y[row.product_id - 1, row.user_id - 1] = row.rating
 
 	R=np.zeros((mynm,mynu))
 
-	for i in range(Y.shape[0]):
-		for j in range(Y.shape[1]):
-			if Y[i][j]!=0:
-				R[i][j]=1
+	R = (Y != 0).astype(int)  # More efficient way to create R matrix
 
 
 	Ynorm, Ymean = normalizeRatings(Y,R)
