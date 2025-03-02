@@ -1,4 +1,5 @@
 # **📚 Online Book Store with Recommendation System**
+
 ⚠ **THE AUTHOR IS NO LONGER UPDATING THIS REPOSITORY** ⚠
 
 ## **📖 About This Project**
@@ -142,7 +143,17 @@ python manage.py migrate
 
 ---
 
-## 📌 **Step 9: Load Sample Data (If Needed)**
+## 📌 **Step 9: Create a Superuser for Django Admin**
+To manage books and users via Django Admin, create a **superuser**:
+```powershell
+python manage.py createsuperuser
+```
+- Enter **Username, Email, and Password**.
+- Log in at **[`http://127.0.0.1:8000/admin/`](http://127.0.0.1:8000/admin/)**.
+
+---
+
+## 📌 **Step 10: Load Sample Data (If Needed)**
 ### **1️⃣ Add Books via Django Admin**
 - Go to: **[`http://127.0.0.1:8000/admin/`](http://127.0.0.1:8000/admin/)**
 - Log in and manually **add some books**.
@@ -181,16 +192,6 @@ exit()
 
 ---
 
-## 📌 **Step 10: Create a Superuser for Django Admin**
-Run:
-```powershell
-python manage.py createsuperuser
-```
-- Enter **Username, Email, and Password**.
-- Log in at **[`http://127.0.0.1:8000/admin/`](http://127.0.0.1:8000/admin/)**.
-
----
-
 ## 📌 **Step 11: Run the Development Server**
 ```powershell
 python manage.py runserver
@@ -219,12 +220,11 @@ Ensure users have **rated books** before trying recommendations.
 
 ---
 
-🚀 **Now anyone cloning the project can set it up smoothly without errors!**  
+🚀 **Now the setup steps are logically ordered and easier to follow!**  
 
 This **README format is perfect for GitHub** and blends the original **project introduction** with the **updated setup instructions**.  
 
 Let me know if you want any final tweaks before committing this! 🎯
-          
           
 
 
