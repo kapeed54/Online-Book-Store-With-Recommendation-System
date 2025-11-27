@@ -216,15 +216,7 @@ Start-Service MySQL
 python -m pip install --upgrade pip
 ```
 ### **3️⃣ If Recommendations Don’t Work**
-Ensure users have **rated books** before trying recommendations.
-
----
-
-🚀 **Now the setup steps are logically ordered and easier to follow!**  
-
-This **README format is perfect for GitHub** and blends the original **project introduction** with the **updated setup instructions**.  
-
-Let me know if you want any final tweaks before committing this! 🎯
+Ensure users have **rated books** before trying 
           
 
 
